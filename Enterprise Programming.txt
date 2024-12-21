@@ -1,0 +1,255 @@
+                                                  Enterprise Programming
+                                               --------------------------------
+
+Prerequisite : HTML , CSS, JS,  XML, Bootstrap
+Outcome : Build Web application , RedHat Certification
+
+ CO-1  :Java Database  Connectivity  (JDBC)
+-----------------------------------------------------
+         -Introduction to JDBC
+         - Why JDBC
+         - JDBC Drivers
+         - JDBC Steps
+         - JDBC Classes
+         - JDBC Interfaces
+         - JDBC Examples(10)
+         - JDBC CRUD Operations
+
+Introduction
+-----------------
+ - JDBC stands for Java Database Connectivity
+ - JDBC is a Java API (Application Programmable Interface) Which allows Java Application to interact with Database
+       Java API 
+       Java App --------------->Database
+                        (interaction)
+
+Note : 
+  Java API consists of several packages where every package will have many classes and interfaces that helps
+  the Java application to interact with Databases.
+
+ package -> java.sql
+ 
+Why JDBC
+--------------
+-JDBC is a fundamental tool for all java developers to interact with a Database.
+-The reason why JDBC  is wisely used and popular are 
+       1. Platform independent 
+       2. versatile 
+
+    Note : 
+       Java App -----------------------------------------> Database
+                               (ONDC Drivers)                                 (My sql ,or  Oracle )
+
+
+   Java App --------------------------------------------> Database
+                      (JDBC Drivers)                                         (Any Databases)
+
+
+Note : 
+   Use-cases: 
+      1.webapplication
+      2. Enterprise Application
+      3. Desktop Application
+
+JDBC Drivers
+-----------------
+ - JDBC Drivers are the critical components that enables  a java application to communicate with database.
+ - there are 4 types of JDBC Drivers 
+          1. Type-1 Driver
+          2. Type-2 Driver
+          3.  Type-3 Driver
+          4.  Type-4 Driver
+       
+  Type -1 Drivers : 
+          - It is also known as JDBC-ODBC  drivers
+         - Useful for connecting databases where only ODBC drivers are available
+
+Type-2 Drivers:
+        - It also  known as  Native API Driver
+        - Suitable for applications where performance is critical
+
+Type -3 Drivers: 
+    - it is also known as Network protocol drivers
+    - useful in network environment where client doesnot understand the database details
+
+ Type -4 Drivers:
+    
+   - It also known as Thin Drivers
+   - commonly  used in all modern applications
+        1. performance
+        2. Efficiency
+        3. Platform independent
+        4. easy to use
+
+JDBC  Steps 
+----------------
+-  There are 7 steps to connect  Java application with Database using JDBC Drivers
+ 
+Step-1 : import packages
+
+Step-2 : Load Drivers
+ 
+Step-3 : Connection Establishment
+ 
+Step-4 : Create Statement
+ 
+Step-5 : Create ResultSet Object
+
+Step-6 : Execute Queries 
+
+Step-7 : Connection close
+
+Note :  Example for the JDBC Steps 
+
+        Step-1 : import packages 
+                 import java.sql.*;
+  
+        Step-2 : Load Drivers 
+               -Driver Object 
+               -forName() method (Recommended)
+
+          Driver Object :
+          ----------------
+     Driver dr  = new  classdrivers-path
+     DriverManager.registerDriver(dr)
+  
+   forName() Method:
+ -------------------------
+  Class.forName("classdrivers-path")
+
+Step-3 :
+  Connection Establishment
+      Connection con = DriverManager.getConnection("database-path ","username" ,"pwd ")
+
+Step-4:
+  Create Statement
+  Statement stmt = con.createStatement()
+
+ Step-5 :
+  ResultSet rs = stmt.executeQuery("only select")
+
+Step-6:
+  stmt.executeUpdate("queries other than select")
+
+Step-7  : Close Connection
+                con.close()
+
+
+Note : Connectivity with databases
+  
+1. oracle
+     class-drivers: oracle.jdbc.driver.OracleDriver()
+     connectivity : jdbc:oracle:thin:@localhost:1521:xe
+      username :system
+      password: -----(user provided)
+
+2. MySQL
+   class-driver:com.mysql.jdbc.driver
+   connectivity : jdbc:mysql://localhost:3306/db
+  username: root
+  password: -------(user provided)
+  
+
+Example: DB Connectivity(Driver Object) (Oracle)
+
+     import java.sql.*;
+     class DBConnec{
+        public static void main(String args[]){
+        
+       Driver drv = new oracle.jdbc.driver.OracleDriver();
+       DriverManager.registerDriver(drv);
+    
+     Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","admin");
+       
+      if(con!=null){
+           System.out.println("Connection Successfull");
+             }
+else{
+        System.out.println("Connection unSuccessfull");
+        }
+  con.close();
+         }
+
+   } 
+
+
+Example: DB Connectivity(forname) (Oracle)
+
+     import java.sql.*;
+     class DBConnec{
+        public static void main(String args[]){
+        
+       Class.forName(" oracle.jdbc.driver.OracleDriver()")
+
+    
+     Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","admin");
+       
+      if(con!=null){
+           System.out.println("Connection Successfull");
+             }
+else{
+        System.out.println("Connection unSuccessfull");
+        }
+  con.close();
+         }
+
+   }
+
+  Example: DB Connectivity(forname) (MySQL)
+
+
+ import java.sql.*;
+     class DBConnec{
+        public static void main(String args[]){
+        
+       Class.forName(" com.mysql.jdbc.driver")
+
+    
+     Connection con = DriverManager.getConnection(" jdbc:mysql://localhost:3306/db");
+       
+      if(con!=null){
+           System.out.println("Connection Successfull");
+             }
+else{
+        System.out.println("Connection unSuccessfull");
+        }
+  con.close();
+         }
+
+   }
+
+
+Example: DB Connectivity(Driver Object) (MySQL)
+
+
+     import java.sql.*;
+     class DBConnec{
+        public static void main(String args[]){
+        
+       Driver drv = new com.mysql.jdbc.driver
+
+       DriverManager.registerDriver(drv);
+    
+     Connection con = DriverManager.getConnection(" jdbc:mysql://localhost:3306/db");
+       
+      if(con!=null){
+           System.out.println("Connection Successfull");
+             }
+else{
+        System.out.println("Connection unSuccessfull");
+        }
+  con.close();
+         }
+
+   } 
+
+ 
+
+
+
+
+
+
+
+
+
